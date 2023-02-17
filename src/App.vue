@@ -44,7 +44,6 @@
 
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>Pive</v-app-bar-title>
 
       <v-spacer></v-spacer>
       <v-col
@@ -52,13 +51,6 @@
           sm="6"
           md="3"
         >
-          <v-text-field
-            class="mt-6"
-            label="Unesite naziv proizvoda"
-            prepend-inner-icon="mdi-magnify"
-            dense
-            clearable
-          ></v-text-field>
         </v-col>
     </v-app-bar>
 
@@ -72,29 +64,12 @@
 <script>
 export default {
     data: () => ({ 
-      ApiBeer: [],
       drawer: false,
       items: [
           { title: 'All Beers', icon: 'mdi-beer', to: '/all-beers' },
           { title: 'Random Beer', icon: 'mdi-glass-mug-variant', to: '/random-beer'}
         ],
-    }),
-    methods: {
-    getNewsData: function () {
-      this.axios
-        .get(
-          "https://api.punkapi.com/v2/beers"
-        )
-        .then((response) => {
-          console.log(response.data.beers);
-          this.ApiBeer = response.data.articles;
-        });
-    },
-
-    ispis: function () {
-      console.log(this.ApiBeer);
-    },
-  },
+    })
   }
 </script>
 <style lang="scss">
