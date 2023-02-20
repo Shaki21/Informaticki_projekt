@@ -28,9 +28,6 @@
       <v-app-bar-title>Pive</v-app-bar-title>
 
       <v-spacer></v-spacer>
-      <v-col cols="12" sm="6" md="3">
-        <v-text-field class="mt-6" label="Unesite naziv proizvoda" prepend-inner-icon="mdi-magnify" dense clearable></v-text-field>
-      </v-col>
     </v-app-bar>
 
     <v-main>

@@ -2,41 +2,32 @@
   <div class="all-beers">
     <div class="d-flex flex-column">
       <div class="d-flex justify-center">
-        <span class="text-h4 font-weight-medium  mt-3">Sve pive</span>
+        <span class="text-h4 font-weight-medium mt-3">All Beers</span>
       </div>
       <div class="d-flex justify-center">
-        <v-text-field label="Unesite naziv proizvoda..." prepend-inner-icon="mdi-magnify" clearable v-model="input"  style="max-width: 380px"></v-text-field>
+        <v-text-field label="Unesite naziv proizvoda..." prepend-inner-icon="mdi-magnify" clearable v-model="input" style="max-width: 380px" @input="search()"></v-text-field>
       </div>
     </div>
     <v-row>
-      <v-col class="justify-center align-center" v-for="beer in filteredList()" cols="12" xl="3" md="4" :key="beer">
+      <v-col class="justify-center align-center" v-for="beer in items" cols="12" xl="3" lg="4" md="6" :key="beer.id">
         <v-card class="mx-auto my-auto">
-          <v-img class="white--text align-center mx-auto" max-width="80" :src="beer.image_url"> </v-img>
+          <v-img class="white--text align-center mx-auto" max-width="100" :src="beer.image_url"> </v-img>
           <v-card-title>{{ beer.name }}</v-card-title>
           <v-card-subtitle>
             {{ beer.id }}
           </v-card-subtitle>
-
           <v-divider class="mx-4"></v-divider>
-
           <v-card-text class="text--primary">
             <div>{{ beer.description }}</div>
           </v-card-text>
-
           <v-divider class="mx-4"></v-divider>
-
           <v-card-text class="text--primary">
             <div>{{ beer.food_pairing[0] }}</div>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-    <v-pagination
-      v-model="page"
-      :length="4"
-      circle
-    ></v-pagination>
-
+    <v-pagination v-model="page" :length="Math.ceil(paginatedBeers.length / perPage)"></v-pagination>
   </div>
 </template>
 <style>
