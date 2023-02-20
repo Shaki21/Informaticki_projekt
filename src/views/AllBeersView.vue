@@ -31,6 +31,12 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-pagination
+      v-model="page"
+      :length="4"
+      circle
+    ></v-pagination>
+    
   </div>
 </template>
 <style>
