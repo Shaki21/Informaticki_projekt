@@ -1,8 +1,7 @@
 <template>
   <div class="random-beer">
     <v-card class="mx-auto my-auto" max-width="400">
-        <v-img class="white--text align-center mx-auto" max-width="80" :src="beer.image_url">
-        </v-img>
+      <v-img class="white--text align-center mx-auto" max-width="80" :src="beer.image_url"> </v-img>
         <v-card-title>{{ beer.name }}</v-card-title>
         <v-card-subtitle>
           {{ beer.id }}

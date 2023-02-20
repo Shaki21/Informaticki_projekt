@@ -36,7 +36,7 @@
       :length="4"
       circle
     ></v-pagination>
-    
+
   </div>
 </template>
 <style>
@@ -52,18 +52,27 @@
 }
 </style>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import axios from "axios";
 
 const beers = ref([]);
+const paginatedBeers = ref([]);
+let input = ref("");
+const page = ref(1);
+const perPage = ref(8);
+
+// Search
+function search() {
+  paginatedBeers.value = beers.value.filter((beer) => beer.name.toLowerCase().includes(input.value.toLowerCase()));
+}
+// Pagination
+const items = computed(() => {
+  return paginatedBeers.value.slice((page.value - 1) * perPage.value, page.value * perPage.value);
+});
 
 axios.get("https://api.punkapi.com/v2/beers").then((res) => {
   beers.value = res.data;
+  paginatedBeers.value = res.data;
   console.log(res.data);
 });
-
-let input = ref("");
-function filteredList() {
-  return beers.value.filter((beer) => beer.name.toLowerCase().includes(input.value.toLowerCase()));
-}
 </script>
